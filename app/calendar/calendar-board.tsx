@@ -121,7 +121,6 @@ export default function CalendarBoard({ posts: initialPosts = [] }: CalendarBoar
         console.error('Error details:', {
           message: insertError.message,
           code: insertError.code,
-          status: insertError.status,
           details: insertError.details,
           hint: insertError.hint,
         });
