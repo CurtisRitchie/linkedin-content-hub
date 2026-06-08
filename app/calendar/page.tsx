@@ -112,6 +112,9 @@ export default async function CalendarPage() {
     }
   }
 
+  // Flatten posts for CalendarBoard component
+  const posts = Object.values(postsByDay).flat();
+
   return (
     <div className="min-h-screen bg-zinc-50 px-4 py-10 text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -129,7 +132,7 @@ export default async function CalendarPage() {
           </div>
         </div>
 
-        <CalendarBoard weekDays={weekDays} postsByDay={postsByDay} />
+        <CalendarBoard posts={posts} />
       </div>
     </div>
   );

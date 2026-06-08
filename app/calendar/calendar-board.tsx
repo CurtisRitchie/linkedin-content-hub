@@ -12,7 +12,7 @@ type Post = {
   id: string | number;
   title: string;
   status: string;
-  scheduled_date: string;
+  date: string;
 };
 
 type Status = 'draft' | 'writing' | 'ready' | 'sent to designer' | 'waiting' | 'scheduled' | 'published';
@@ -87,7 +87,7 @@ export default function CalendarBoard({ posts: initialPosts = [] }: CalendarBoar
   }, []);
 
   const getPostsForDay = (dateString: string) => {
-    return posts.filter((post) => post.scheduled_date === dateString);
+    return posts.filter((post) => post.date.split('T')[0] === dateString);
   };
 
   const handleSavePost = async () => {
@@ -101,7 +101,7 @@ export default function CalendarBoard({ posts: initialPosts = [] }: CalendarBoar
 
     try {
       const slug = generateSlug(formData.title);
-      console.log('Attempting to save post:', { title: formData.title, slug, status: formData.status, scheduled_date: formData.date });
+      console.log('Attempting to save post:', { title: formData.title, slug, status: formData.status, date: formData.date });
       
       const { data, error: insertError } = await browserSupabase
         .from('posts')
@@ -110,7 +110,7 @@ export default function CalendarBoard({ posts: initialPosts = [] }: CalendarBoar
             title: formData.title,
             slug,
             status: formData.status,
-            scheduled_date: formData.date,
+            date: formData.date,
             created_at: new Date().toISOString(),
           },
         ])
