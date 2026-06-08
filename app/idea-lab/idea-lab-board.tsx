@@ -13,10 +13,12 @@ type TrendingItem = {
   title: string;
   link: string;
   feedTitle: string;
-  publishedAt?: string;
-  pubDate?: string;
   date?: string;
+  pubDate?: string;
+  publishedAt?: string;
   description?: string;
+  source?: string;
+  timestamp?: number;
 };
 
 type IdeaLabBoardProps = {
